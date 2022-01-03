@@ -1,0 +1,54 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+a {
+    color: coral;
+}
+
+body {
+    background: #FFEEEE;
+    background: -webkit-linear-gradient(to right, #DDEFBB, #FFEEEE);
+    background: linear-gradient(to right, #DDEFBB, #FFEEEE);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+h1 {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 10px;
+    color: brown;
+}
+
+h1 img {
+    width: 48px;
+}
+
+main {
+    outline: 1px solid red;
+    align-self: center;
+    flex-grow: 1;
+    width: 100%;
+    max-width: 97%;
+}
+
+.container {
+    height: 100%;
+}
+
+footer {
+    
+    padding: 5px;
+    text-align: center;
+}
