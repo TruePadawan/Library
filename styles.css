@@ -28,7 +28,7 @@ h1 {
     gap: 10px;
     justify-content: center;
     margin: 10px;
-    color: brown;
+    color: goldenrod;
 }
 
 h1 img {
@@ -36,19 +36,40 @@ h1 img {
 }
 
 main {
-    outline: 1px solid red;
     align-self: center;
     flex-grow: 1;
     width: 100%;
     max-width: 97%;
 }
 
+footer {  
+    padding: 5px;
+    text-align: center;
+}
+
 .container {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 }
 
-footer {
-    
-    padding: 5px;
-    text-align: center;
+.new-book-btn {
+    align-self: center;
+    margin: 10px;
+    padding: 7px;
+    border: 1px solid brown;
+    background-color: transparent;
+}
+
+.new-book-btn:hover {
+    background-color: rgba(255, 127, 80, 0.712);
+}
+
+.new-book-btn:active {
+    background-color: coral;
+}
+
+.bk-container {
+    background-color: rgba(255, 192, 203, 0.288);
+    height: 100%;
 }
