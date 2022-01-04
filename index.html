@@ -24,6 +24,46 @@
             </button>
             <div class="bk-container"></div>
         </div>
+
+        <section class="new-book-container">
+
+            <div class="new-book-form">
+                <h3>Add New Book</h3>
+
+                <div class="new-book-form-content">
+                    <label>
+                        Title
+                        <input type="text" name="bk-title" />
+                    </label>
+
+                    <label>
+                        Author
+                        <input type="text" name="bk-author" />
+                    </label>
+
+                    <label>
+                        Number of Pages
+                        <input type="number" name="bk-pages" min="0" max="10000"/>
+                    </label>
+
+                    <label>
+                        Status
+                        <div class="bk-status">
+                            <label>
+                                Read
+                                <input type="radio" name="bk-status" checked/>
+                            </label>
+                            <label>
+                                Not Read
+                                <input type="radio" name="bk-status"/>
+                            </label>
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+
+        </section>
     </main>
 
     <footer>

@@ -8,6 +8,7 @@ html {
     padding: 0;
     margin: 0;
     text-decoration: none;
+    font-family: sans-serif;
 }
 
 a {
@@ -29,7 +30,6 @@ h1 {
     justify-content: center;
     margin: 10px;
     color: goldenrod;
-    font-family: sans-serif;
 }
 
 h1 img {
@@ -76,4 +76,56 @@ footer {
 .bk-container {
     background-color: rgba(255, 192, 203, 0.288);
     height: 100%;
+}
+
+.new-book-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.404);
+    width: 100%;
+    height: 100%;
+}
+
+.new-book-form {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    width: max-content;
+    padding: 10px;
+    background-color: rgba(212, 190, 190, 0.288);
+}
+
+.new-book-form h3 {
+    color: goldenrod;
+}
+
+.new-book-form-content label, .new-book-form-content input {
+    display: block;
+}
+
+.new-book-form-content label {
+    text-align: center;
+    margin: 15px;
+}
+
+.new-book-form-content input {
+    border: none;
+    background-color: #FFEEEE;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.bk-status {
+    margin-top: 5px;
+}
+
+.bk-status label, .bk-status input {
+    display: inline;
 }
