@@ -96,6 +96,57 @@ footer a {
     background-color: rgba(255, 192, 203, 0.288);
     height: 100%;
     border-radius: 10px;
+    padding: 7px;
+    font-family: "Barlow Condensed";
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+}
+
+.bk-instance {
+    width: 11em;
+    height: 9em;
+    flex-shrink: 1;
+    border-radius: 5px;
+    background-color: lightcoral;
+}
+
+.bk {
+    height: 93%;
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.884);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bk h4 {
+    margin: 5px;
+    font-size: larger;
+}
+
+.bk button {
+    border: 1px solid rgb(204, 224, 231);
+    border-radius: 5px;
+    background-color: lightsteelblue;
+    padding: 5px;
+    margin: 17px 10px 10px 10px;
+    font-family: "Barlow Condensed";
+    font-size: larger;
+}
+
+.bk button:hover {
+    background-color: rgba(176, 196, 222, 0.61);
+}
+
+.bk button:active {
+    background-color: lightsteelblue;
+}
+
+.bk-pages {
+    font-style: oblique;
+    margin-top: 5px;
 }
 
 .new-book-container {
