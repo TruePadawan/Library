@@ -1,5 +1,3 @@
-let myLib = [];
-
 function Book(title, author, pages, isRead)
 {
     this.title = title;
@@ -31,3 +29,19 @@ function addBookToLibrary()
 
     myLib.push(new Book(bkTitle, bkAuthor, bkPages, bkRead));
 }
+
+let myLib = [];
+let addNewBook = document.querySelector('.new-book-btn');
+let addNewBookForm = document.querySelector('.new-book-container');
+let closeFormBtn = document.querySelector('.close-form-btn');
+
+addNewBook.addEventListener('click', () => {
+    if (getComputedStyle(addNewBookForm).display === "none")
+    {
+        addNewBookForm.style.display = 'flex';
+    }
+});
+
+closeFormBtn.addEventListener('click', () => {
+    addNewBookForm.style.display = 'none';
+});
