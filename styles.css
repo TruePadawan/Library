@@ -74,6 +74,7 @@ footer a {
 }
 
 .new-book-btn {
+    height: 50px;
     align-self: center;
     margin: 20px;
     border: none;
@@ -105,7 +106,6 @@ footer a {
 }
 
 .bk-instance {
-    width: 11em;
     height: 9em;
     flex-shrink: 1;
     border-radius: 5px;
@@ -113,6 +113,7 @@ footer a {
 }
 
 .bk {
+    padding: 0 3px;
     height: 93%;
     border-radius: 5px;
     background-color: rgba(128, 128, 128, 0.884);

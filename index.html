@@ -23,79 +23,36 @@
                 <img src="https://img.icons8.com/ios/50/000000/plus--v1.png"/>
             </button>
             <div class="bk-container">
-                
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
+                <template id="bk-template">
+                    <div class="bk-instance">
+                        <div class="bk">
+                            <h4></h4>
+                            <span class="bk-author"></span>
+                            <span class="bk-pages"></span>
+                            <button>Read Status</button>
+                        </div>
                     </div>
-                </div>
+                </template>
 
-                <div class="bk-instance">
+                <!-- <div class="bk-instance">
                     <div class="bk">
                         <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
+                        <span class="bk-author">Brandon Mull</span>
                         <span class="bk-pages">295 pages</span>
                         <button>Read Status</button>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
-                    </div>
-                </div>
-
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
-                    </div>
-                </div>
-
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
-                    </div>
-                </div>
-
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
-                    </div>
-                </div>
-
-                <div class="bk-instance">
-                    <div class="bk">
-                        <h4>Fablehaven</h4>
-                        <span>Brandon Mull</span>
-                        <span class="bk-pages">295 pages</span>
-                        <button>Read Status</button>
-                    </div>
-                </div>
             </div>
         </div>
 
         <section class="new-book-container">
 
-            <div class="new-book-form">
+            <form class="new-book-form">
 
                 <div class="new-book-form-header">
                     <h3>Add New Book</h3>
-                    <button class="close-form-btn">
+                    <button type="button" class="close-form-btn">
                         <img src="https://img.icons8.com/material-outlined/50/000000/delete-sign.png"/>
                     </button>
                 </div>
@@ -103,17 +60,17 @@
                 <div class="new-book-form-content">
                     <label>
                         Title
-                        <input type="text" name="bk-title" minlength="1" />
+                        <input type="text" name="bk-title" minlength="1" required/>
                     </label>
 
                     <label>
                         Author
-                        <input type="text" name="bk-author" minlength="1" />
+                        <input type="text" name="bk-author" minlength="1" required/>
                     </label>
 
                     <label>
                         Number of Pages
-                        <input type="number" name="bk-pages" min="0" max="10000"/>
+                        <input type="number" name="bk-pages" min="0" max="10000" required/>
                     </label>
 
                     <label>
@@ -121,19 +78,19 @@
                         <div class="bk-status">
                             <label>
                                 Read
-                                <input type="radio" name="bk-status" checked/>
+                                <input type="radio" data-status="yes" name="bk-readStatus" checked/>
                             </label>
                             <label>
                                 Not Read
-                                <input type="radio" name="bk-status"/>
+                                <input type="radio" data-status="no" name="bk-readStatus"/>
                             </label>
                         </div>
                     </label>
 
                 </div>
                 
-                <button class="add-book-btn">Add</button>
-            </div>
+                <button type="submit" class="add-book-btn">Add</button>
+            </form>
 
         </section>
     </main>
