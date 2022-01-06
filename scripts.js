@@ -20,13 +20,17 @@ function addBookToLibrary(title, author, pages, readStatus)
 
     // SET CLICK EVENT TO TRIGGER A CHANGE IN READ STATUS
     bookNode.querySelector('.bk button').addEventListener('click', () => {
+        let bookItems = localStorage.getObj('bkLib');
         if (getComputedStyle(bookNode).backgroundColor === 'rgb(240, 128, 128)')
         {
             bookNode.style.backgroundColor = 'lightgreen';
+            bookItems[bookNode.dataset.index].readStatus = "yes";
         }else
         {
             bookNode.style.backgroundColor = 'lightcoral';
+            bookItems[bookNode.dataset.index].readStatus = "no";
         }
+        localStorage.setObj('bkLib', bookItems);
     });
 
     // SET CLICK EVENT TO TRIGGER A REMOVAL OF THE BOOK ITEM FROM DOM AND LOCALSTORAGE
