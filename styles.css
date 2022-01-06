@@ -241,11 +241,12 @@ footer a {
     color: #343c4e;
 }
 
-.new-book-form-content input {
+.new-book-form-content input:not(.bk-status input) {
     border: none;
     background-color: #a18f8fa9;
     padding: 5px;
     margin-top: 5px;
+    width: 100%;
 }
 
 .bk-status {
