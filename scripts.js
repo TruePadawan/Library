@@ -1,13 +1,13 @@
-function Book(title, author, pages, isRead)
+function loadBooks()
 {
-    this.title = title;
-    this.author = author;
-    this.pages = +pages;
-    this.read = isRead.toUpperCase() === "Y" ? "has been read" : "not read yet";
-}
-
-Book.prototype.info = function() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
+    let books = localStorage.getObj('bkLib');
+    if (books.length > 0)
+    {
+        for (let i = 0; i < books.length; i++)
+        {
+            addBookToLibrary(books[i].title, books[i].author, books[i].pages, books[i].readStatus);
+        }
+    }
 }
 
 function addBookToLibrary(title, author, pages, readStatus)
@@ -15,10 +15,11 @@ function addBookToLibrary(title, author, pages, readStatus)
     let bookNode = bkTemplate.content.firstElementChild.cloneNode(true);
     bookNode.querySelector('h4').textContent = title;
     bookNode.querySelector('.bk-author').textContent = author;
-    bookNode.querySelector('.bk-pages').textContent = pages;
+    bookNode.querySelector('.bk-pages').textContent = `${pages} pages`;
     bookNode.style.backgroundColor = readStatus === "yes" ? "lightgreen" : "lightcoral";
 
-    bookNode.addEventListener('click', () => {
+    // SET CLICK EVENT TO TRIGGER A CHANGE IN READ STATUS
+    bookNode.querySelector('.bk button').addEventListener('click', () => {
         if (getComputedStyle(bookNode).backgroundColor === 'rgb(240, 128, 128)')
         {
             bookNode.style.backgroundColor = 'lightgreen';
@@ -28,31 +29,62 @@ function addBookToLibrary(title, author, pages, readStatus)
         }
     });
 
+    // SET CLICK EVENT TO TRIGGER A REMOVAL OF THE BOOK ITEM FROM DOM AND LOCALSTORAGE
+    bookNode.querySelector('.del-bk-instance').addEventListener('click', () => {
+        bkContainer.removeChild(bookNode);
+        myLib.splice(bookNode.dataset.index,1);
+
+        localStorage.setObj('bkLib', myLib);
+    });
+
+
+    let bkItem = {
+        title,
+        author,
+        pages: pages,
+        readStatus,
+        index: myLib.length
+    }
+    
+    //ADD A DATA-ATTRIBUTE TO IT SO IT CAN BE REFERENCED IN MyLib ARRAY
+    bookNode.dataset.index = myLib.length;
+
+    myLib.push(bkItem);
+    localStorage.setObj('bkLib', myLib);
+
     bkContainer.appendChild(bookNode);
 }
 
+/// INIT-Add way to put arrays or objects in localStorage ////
+Storage.prototype.setObj = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getObj = function(key) {
+    return JSON.parse(this.getItem(key))
+}
+
+
 ////// VARIABLES //////
 let myLib = [];
-let addNewBookForm = document.querySelector('.new-book-container');
+
+let addNewBookModal = document.querySelector('.new-book-container');
 let bkContainer = document.querySelector('.bk-container');
 let bkTemplate = document.getElementById('bk-template');
 
 let showNewBookFormBtn = document.querySelector('.new-book-btn');
 let newBookForm = document.querySelector('.new-book-form');
 let closeFormBtn = document.querySelector('.close-form-btn');
-// let bkButtons = document.querySelectorAll('.bk button');
 ///////////////
 
-////// LOGIC ///////
 showNewBookFormBtn.addEventListener('click', () => {
-    if (getComputedStyle(addNewBookForm).display === "none")
+    if (getComputedStyle(addNewBookModal).display === "none")
     {
-        addNewBookForm.style.display = 'flex';
+        addNewBookModal.style.display = 'flex';
     }
 });
 
 closeFormBtn.addEventListener('click', () => {
-    addNewBookForm.style.display = 'none';
+    addNewBookModal.style.display = 'none';
 });
 
 newBookForm.addEventListener('submit', (e) => {
@@ -72,18 +104,6 @@ newBookForm.addEventListener('submit', (e) => {
 
     addBookToLibrary(title, author, pages, readStatus);
 });
-// bkButtons.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//         let bkInstance = btn.closest('.bk-instance');
 
-//         if (getComputedStyle(bkInstance).backgroundColor === 'rgb(240, 128, 128)')
-//         {
-//             bkInstance.style.backgroundColor = 'lightgreen';
-//         }else
-//         {
-//             bkInstance.style.backgroundColor = 'lightcoral';
-//         }
-//     });
-// });
-
-// bkContainer.appendChild(bkTemplate.content.firstElementChild.cloneNode(true));
+/// FIND AND ADD BOOK ITEMS FROM LocalStorage IF ANY
+loadBooks();
