@@ -109,8 +109,7 @@ footer a {
 }
 
 .bk-instance {
-    /* height: 9em; */
-    flex-shrink: 1;
+    flex-basis: 7em;    
     border-radius: 5px;
     background-color: lightcoral;
     display: flex;
@@ -128,8 +127,10 @@ footer a {
 }
 
 .bk h4 {
+    text-align: center;
     margin: 5px;
     font-size: larger;
+    width: 100%;
 }
 
 .bk button {
