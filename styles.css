@@ -187,13 +187,16 @@ footer a {
     gap: 1em;
     width: max-content;
     padding: 10px;
-    background-color: rgba(212, 190, 190, 0.288);
+    background-color: rgba(216, 190, 190, 0.911);
 }
 
 .add-book-btn {
     padding: 10px;
-    border: 1px solid rgba(240, 128, 128, 0.616);
+    border: 1px solid lightcoral;
+    border-radius: 5px;
     background-color: transparent;
+    font-size: medium;
+    font-family: "Barlow Condensed";
 }
 
 .add-book-btn:hover {
@@ -205,6 +208,8 @@ footer a {
 }
 
 .new-book-form-header {
+    font-family: "Barlow Condensed";
+    font-size: x-large;
     display: flex;
     width: 100%;
 }
@@ -221,7 +226,7 @@ footer a {
 .new-book-form h3 {
     flex-grow: 1;
     text-align: center;
-    color: rgba(196, 189, 146, 0.87);
+    color: rgb(80, 74, 74);
 }
 
 .new-book-form-content label, .new-book-form-content input {
@@ -231,6 +236,9 @@ footer a {
 .new-book-form-content label {
     text-align: center;
     margin: 15px;
+    font-family: "Barlow Condensed";
+    font-size: larger;
+    color: #343c4e;
 }
 
 .new-book-form-content input {
