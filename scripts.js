@@ -35,10 +35,10 @@ function addBookToLibrary(title, author, pages, readStatus)
 
     // SET CLICK EVENT TO TRIGGER A REMOVAL OF THE BOOK ITEM FROM DOM AND LOCALSTORAGE
     bookNode.querySelector('.del-bk-instance').addEventListener('click', () => {
-        bkContainer.removeChild(bookNode);
         myLib.splice(bookNode.dataset.index,1);
 
         localStorage.setObj('bkLib', myLib);
+        bkContainer.removeChild(bookNode);
     });
 
 
