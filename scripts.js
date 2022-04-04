@@ -1,11 +1,3 @@
-/// INIT-Add way to put arrays or objects in localStorage ////
-Storage.prototype.setObj = function (key, obj) {
-  return this.setItem(key, JSON.stringify(obj));
-};
-Storage.prototype.getObj = function (key) {
-  return JSON.parse(this.getItem(key));
-};
-
 class Book {
     #title;
     #author;
@@ -38,6 +30,15 @@ class Book {
         return this.#readStatus;
     }
 }
+
+/// INIT-Add way to put arrays or objects in localStorage ////
+Storage.prototype.setObj = function (key, obj) {
+  return this.setItem(key, JSON.stringify(obj));
+};
+Storage.prototype.getObj = function (key) {
+  return JSON.parse(this.getItem(key));
+};
+
 ////// VARIABLES //////
 let myLib = [];
 
@@ -49,20 +50,6 @@ let showNewBookFormBtn = document.querySelector(".new-book-btn");
 let newBookForm = document.querySelector(".new-book-form");
 let closeFormBtn = document.querySelector(".close-form-btn");
 ///////////////
-
-function loadBooks() {
-  let books = localStorage.getObj("bkLib");
-  if (books.length > 0) {
-    for (let i = 0; i < books.length; i++) {
-      addBookToLibrary(
-        books[i].title,
-        books[i].author,
-        books[i].pages,
-        books[i].readStatus
-      );
-    }
-  }
-}
 
 function buildBookItem(bookItemData) {
     const newBookItem = bkTemplate.content.firstElementChild.cloneNode(true);
@@ -100,52 +87,27 @@ function buildBookItem(bookItemData) {
   return newBookItem;
 }
 
-function addBookToLibrary(title, author, pages, readStatus) {
-  let bookItem = bkTemplate.content.firstElementChild.cloneNode(true);
-  bookItem.querySelector("h4").textContent = title;
-  bookItem.querySelector(".bk-author").textContent = author;
-  bookItem.querySelector(".bk-pages").textContent = `${pages} pages`;
-  bookItem.style.backgroundColor = readStatus === "yes" ? "lightgreen" : "lightcoral";
+function addBookToLibrary(book) {
+    const bookDOMItem = buildBookItem(book);
+    
+    //ADD A DATA-ATTRIBUTE TO IT SO IT CAN BE REFERENCED IN MyLib ARRAY
+    bookDOMItem.dataset.index = myLib.length;
+    
+    let bookItem = {
+        title : book.title,
+        author : book.author,
+        pages: book.pages,
+        readStatus : book.readStatus,
+        index: myLib.length,
+    };
 
-  // SET CLICK EVENT TO TRIGGER A CHANGE IN READ STATUS
-  bookItem.querySelector(".bk button").addEventListener("click", () => {
-    let bookItems = localStorage.getObj("bkLib");
-
-    if (getComputedStyle(bookItem).backgroundColor === "rgb(240, 128, 128)") {
-      bookItem.style.backgroundColor = "lightgreen";
-      bookItems[bookItem.dataset.index].readStatus = "yes";
-    }
-    else {
-      bookItem.style.backgroundColor = "lightcoral";
-      bookItems[bookItem.dataset.index].readStatus = "no";
-    }
-    localStorage.setObj("bkLib", bookItems);
-  });
-
-  // SET CLICK EVENT TO TRIGGER A REMOVAL OF THE BOOK ITEM FROM DOM AND LOCALSTORAGE
-  bookItem.querySelector(".del-bk-instance").addEventListener("click", () => {
-    myLib.splice(bookItem.dataset.index, 1);
-
+    // STORE BOOK DATA
+    myLib.push(bookItem);
     localStorage.setObj("bkLib", myLib);
-    bkContainer.removeChild(bookItem);
-  });
-
-  let bkItem = {
-    title,
-    author,
-    pages: pages,
-    readStatus,
-    index: myLib.length,
-  };
-
-  //ADD A DATA-ATTRIBUTE TO IT SO IT CAN BE REFERENCED IN MyLib ARRAY
-  bookItem.dataset.index = myLib.length;
-
-  myLib.push(bkItem);
-  localStorage.setObj("bkLib", myLib);
-
-  bkContainer.appendChild(bookItem);
+    
+    bkContainer.appendChild(bookDOMItem);
 }
+
 
 // MAIN EVENT LISTENERS
 showNewBookFormBtn.addEventListener("click", () => {
@@ -176,8 +138,24 @@ newBookForm.addEventListener("submit", (e) => {
 
   const newBook = new Book(title,author, pages, readStatus);
 
-  addBookToLibrary(title, author, pages, readStatus);
+  addBookToLibrary(newBook);
 });
 
-/// FIND AND ADD BOOK ITEMS FROM LocalStorage IF ANY
-loadBooks();
+
+function loadBooksFromStorage() {
+    let books = localStorage.getObj("bkLib");
+  
+    if (books.length > 0) {
+      for (let i = 0; i < books.length; i++) {
+          const title = books[i].title;
+          const author = books[i].author;
+          const pages = books[i].pages;
+          const readStatus = books[i].readStatus;
+  
+          const book = new Book(title, author, pages, readStatus);
+          addBookToLibrary(book);
+      }
+    }
+}
+
+loadBooksFromStorage();
